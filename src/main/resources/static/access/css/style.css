@@ -1,0 +1,2075 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styling */
+.hero-section {
+    position: relative;
+}
+
+.hero-section .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/banner/pd08.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(3px);
+    z-index: -1;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 100px;
+    background-color: transparent;
+    color: #fff;
+}
+
+.main-header .header-left,
+.main-header .header-right {
+    flex: 0 0 auto;
+}
+
+.main-header .logo img {
+    max-width: 150px;
+}
+
+.main-header .navbar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.main-header .navbar ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.main-header .navbar li {
+    margin: 0 35px;
+}
+
+.navbar .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0 20px;
+}
+
+.main-header .navbar a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.main-header .navbar a:hover {
+    color: #ff6347;
+}
+
+.main-header .header-right {
+    margin-left: auto;
+}
+
+.main-header .header-right .book-now {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.main-header .header-right .book-now:hover {
+    background-color: #e5533f;
+}
+
+/* Slider Styling */
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 580px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.slider {
+    display: flex;
+    position: relative;
+}
+
+.slide {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    transform: translateX(0);
+}
+
+.slider-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* Specific Overlays */
+.overlay-text, .overlay-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 165, 0, 0.8);
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.5s ease-out, opacity 1.5s ease-out;
+}
+
+.slider-content img {
+    right: 5px;
+    width: 600px;
+    height: 500px;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    position: absolute;
+}
+
+.text {
+    position: absolute;
+    left: 25%;
+    top: 40%;
+    transform: translateY(-50%);
+    color: #fff;
+    z-index: 2;
+    width: 400px;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.text h2 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    line-height: 1.3;
+    letter-spacing: 1px;
+}
+
+.slide.active .text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.text .btn-details {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.text .btn-details:hover {
+    background-color: #e5533f;
+}
+
+/* Navigation buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 30px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Image Gallery Styling */
+.image-gallery {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 100px;
+    flex-wrap: wrap;
+}
+
+.image-item {
+    position: relative;
+    width: 30%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.image-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.banner {
+    position: absolute;
+    top: 200px;
+    border-radius: 10px;
+}
+
+.image-item.middle {
+    width: 40%;
+}
+
+.text-image-gallery {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+}
+
+.image-item img:hover + .overlay-image-gallery .text-image-gallery {
+    color: #ff6347;
+}
+
+/* Products Section */
+.products-section {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.products-section p {
+    font-size: 56px;
+    margin-bottom: 10px;
+    color: #333;
+    letter-spacing: 10px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.product-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+}
+
+.product-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-item:hover img {
+    transform: scale(1.05);
+}
+
+.product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.product-item:hover .product-info {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.product-info p {
+    margin: 10px;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.price {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff6347;
+}
+
+.new-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff6347;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* Reservation Section */
+.reservation-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+}
+
+.reservation-section .reservation-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-image: url('../img/banner/bn04.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px);
+    z-index: -1;
+}
+
+.reservation-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+h2 {
+    font-size: 36px;
+    margin-right: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.reservation-form {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.reservation-form label {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
+.reservation-form input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+.reservation-form input[type="date"],
+.reservation-form input[type="number"] {
+    width: 150px;
+}
+
+.reservation-form input[type="number"] {
+    width: 80px;
+    font-size: 26px;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.reservation-form input[type="number"]:focus {
+    outline: none;
+    border-color: #ff6347;
+}
+
+.book-now {
+    background-color: #fe7802;
+    color: white;
+    font-size: 18px;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.book-now:hover {
+    background-color: #e5533f;
+}
+
+.discover-menu {
+    margin-left: 20px;
+    font-size: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: white;
+}
+
+/* Team Section */
+.team-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 100px;
+    background-color: #fff;
+    gap: 30px;
+}
+
+.team-description p {
+    font-size: 42px;
+    color: #333;
+    width: 500px;
+}
+
+.highlight {
+    font-size: 45px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #ff6347;
+}
+
+.team-member {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    text-align: center;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.team-member img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    height: 33%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.overlay p {
+    width: 400px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+/* Service Section */
+.service-section {
+    width: 100%;
+    padding: 40px 100px;
+}
+
+.all-service-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.service-item {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 48%;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.service-icon {
+    text-align: center;
+    flex: 0 0 40%;
+    margin-right: 10px;
+}
+
+.service-icon img {
+    width: 60px;
+    height: 60px;
+}
+
+.service-description {
+    flex: 1 1 55%;
+}
+
+.service-description p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+}
+
+.read-more {
+    font-size: 14px;
+    color: #ff6347;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.check-all-services {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.check-all-services button {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check-all-services button:hover {
+    background-color: #e5533c;
+}
+
+/* Stats Section */
+.stats-section {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Stats Section */
+.stats-section {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Video Background */
+.background-video {
+    position: absolute; /* Giữ video cố định trong phần tử này */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Đảm bảo video không che các phần tử khác */
+    transform-origin: center;
+}
+
+.background-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Content in the stats section */
+.stats-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1; /* Đảm bảo phần tử này ở trên video */
+}
+
+.stat-item {
+    text-align: center;
+    margin: 0 80px;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+/* News Section */
+.news-section {
+    margin: 50px 100px;
+}
+
+.news-section p.Title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 48px; /* Giảm kích thước chữ */
+    text-align: center;
+    color: #333;
+    letter-spacing: 1px; /* Điều chỉnh khoảng cách giữa các chữ */
+}
+
+/* News Item */
+.news-item {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    align-items: center; /* Đảm bảo các phần tử căn giữa theo chiều dọc */
+}
+
+/* Default: Image on the left */
+.news-image {
+    width: 45%; /* Giảm kích thước của hình ảnh để phần content có thể rộng hơn */
+    margin-right: 15px; /* Giảm khoảng cách giữa hình ảnh và nội dung */
+}
+
+.news-content {
+    width: 50%; /* Tăng chiều rộng của content */
+    padding-left: 10px; /* Giảm khoảng cách trong phần content */
+}
+
+/* Image and content alignment */
+.news-item:nth-child(odd) .news-image {
+    order: 1; /* For odd items, image on the left */
+}
+
+.news-item:nth-child(odd) .news-content {
+    order: 2; /* For odd items, content on the right */
+}
+
+/* For even items, image will be on the right */
+.news-item:nth-child(even) .news-image {
+    order: 2; /* For even items, image on the right */
+}
+
+.news-item:nth-child(even) .news-content {
+    order: 1; /* For even items, content on the left */
+}
+
+/* Style for image */
+.news-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Style for content */
+.news-content h3 {
+    font-size: 24px; /* Đảm bảo tiêu đề có kích thước đủ lớn */
+    margin-bottom: 10px;
+    color: #333; /* Màu tiêu đề nổi bật hơn */
+}
+
+.news-content p {
+    width: 520px;
+    font-size: 16px;
+    color: #666;
+}
+
+.news-content a {
+    font-size: 16px;
+    color: #ff6347;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.news-content a:hover {
+    text-decoration: underline;
+}
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+    position: relative;
+    padding: 20px 0;
+    color: white;
+}
+
+.background-image-footer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../img/banner/para-07.jpg');  /* Thay thế bằng đường dẫn tới ảnh của bạn */
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);  /* Làm mờ hình nền */
+    
+    z-index: -1;  /* Đảm bảo nội dung không bị mờ */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    position: relative;  /* Đảm bảo nội dung hiển thị ở trên hình nền */
+}
+
+.column {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.social-media a {
+    margin: 0 10px;
+}
+
+.social-media img {
+    width: 30px;  /* Set cứng kích thước icon */
+    height: auto;
+    transition: transform 0.3s ease;  /* Thêm hiệu ứng cho icon khi hover */
+}
+
+.social-media img:hover {
+    transform: scale(1.1);  /* Tăng kích thước icon khi hover */
+}
+
+.footer-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-nav ul li {
+    margin: 10px 0;
+}
+
+.footer-nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s ease;  /* Thêm hiệu ứng chuyển màu chữ khi hover */
+}
+
+.footer-nav ul li a:hover {
+    color: #f39c12;  /* Chuyển màu chữ khi hover */
+}
+
+.footer-logo img {
+    max-width: 200px;  /* Tăng kích thước logo */
+    margin: 10px 0;
+}
+
+.contact-info p {
+    font-size: 14px;
+}
+
+.stay-tuned p {
+    font-size: 16px;
+}
+
+/*trang menu*/
+/* HERO CONTENT */
+.hero-content {
+    position: relative;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+.hero-title {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #050505;
+    font-size: 80px;
+    text-transform: uppercase;
+     letter-spacing: 5px;
+}
+
+/* Phần chứa tất cả các card */
+.menu-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    margin-top: 20px;
+}
+
+.menu-container {
+    display: flex;
+    gap: 20px;
+}
+
+/* Card chung */
+.menu-card {
+    position: relative;
+    width: 300px;
+    height: 450px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Hình nền từng card */
+.menu-brunch {
+    background-image: url('../img/banner/menu-01.jpg');
+}
+
+.menu-lunch {
+    background-image: url('../img/banner/menu-02.jpg');
+}
+
+.menu-dinner {
+    background-image: url('../img/banner/menu-03.jpg');
+}
+
+/* Lớp phủ tối mờ */
+.menu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Màu tối mờ */
+}
+
+/* Tiêu đề */
+.menu-title {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Danh sách món ăn */
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.menu-list li {
+    margin-bottom: 5px;
+}
+
+/* Nút bấm */
+.menu-button {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.menu-button:hover {
+    background: #e5533f;
+    color: #fff;
+}
+
+/* SECTION CHUNG */
+.specialities-section {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: lighter;
+    color: #050505;
+    margin-bottom: 30px;
+    letter-spacing: 5px;
+}
+
+/* CONTAINER CHÍNH */
+.specialities-container {
+    display: flex;
+    gap: 30px;
+}
+
+/* MỖI CỘT CHỨA 2 MÓN ĂN */
+.specialities-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+}
+
+/* ITEM MÓN ĂN */
+.speciality-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.speciality-image {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.speciality-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ICON GIỎ HÀNG */
+.speciality-icon {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 40px;
+    height: 40px;
+    background-color: #eb5504;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.speciality-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+/* PHẦN NỘI DUNG */
+.speciality-content {
+    flex: 1;
+}
+
+.speciality-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.speciality-ingredients {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.speciality-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* PHẦN GIÁ & TAG */
+.speciality-bottom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.speciality-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.speciality-tag {
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.speciality-tag.sale {
+    background-color: red;
+}
+
+.speciality-tag.new {
+    background-color: green;
+}
+
+/* NÚT BẤM */
+.speciality-button {
+    background-color:#eb5504;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.speciality-button:hover {
+    background-color: #b96328;
+}
+
+
+/* SECTION CHÍNH */
+.appetizers-section {
+    position: relative;
+    width: 100%;
+    height: 250px; /* Độ cao của banner */
+    background-image: url('../img/banner/pd08.jpg'); /* Đường dẫn ảnh nền */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* LỚP PHỦ TỐI MỜ */
+.appetizers-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Hiệu ứng tối mờ */
+}
+
+/* TIÊU ĐỀ */
+.appetizers-title {
+    font-size: 60px;
+    font-weight: 10;
+    color: white;
+    z-index: 2;
+    position: relative;
+    font-family: 'Raleway', sans-serif; /* Font thanh mảnh */
+    letter-spacing: 12px;
+}
+
+/* SECTION CHÍNH */
+.product-menu-section {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+/* TIÊU ĐỀ */
+.product-menu-title {
+    color: #111;
+    text-align: center;
+    font-size: 36px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+/* FILTER TAGS */
+.product-menu-filters {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-menu-filter {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 18px;
+    cursor: pointer;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.product-menu-filter.active {
+    color: #d27d42;
+    font-weight: bold;
+}
+
+.product-menu-filter.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #d27d42;
+}
+
+/* MENU CONTAINER */
+.product-menu-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* MENU ITEM */
+.product-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Ẩn món ăn khi lọc */
+.product-menu-item.hide {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+/* HÌNH ẢNH */
+.product-menu-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* NỘI DUNG */
+.product-menu-content {
+    flex: 1;
+}
+
+.product-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-menu-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product-menu-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d27d42;
+}
+
+/* MÔ TẢ */
+.product-menu-description {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0;
+}
+
+/* TAG */
+.product-menu-tag {
+    background-color: #d27d42;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+
+/* Table Booking Section */
+.table-booking {
+    max-width: 900px;
+    margin: auto;
+    padding: 50px;
+}
+
+/* Step Progress */
+.table-steps {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.table-step {
+    padding: 10px;
+    font-size: 16px;
+    color: #777;
+    border-bottom: 3px solid transparent;
+}
+
+.table-step.active {
+    color: #d27d42;
+    border-bottom: 3px solid #d27d42;
+}
+
+/* Layout for restaurant selection & calendar */
+.table-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Restaurant Selection */
+.table-restaurant {
+    position: relative;
+    width: 50%;
+    background: url('../img/banner/pd08.jpg') center/cover no-repeat; /* Đặt ảnh nền */
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Căn chỉnh phần nội dung */
+    align-items: center;
+    height: 400px; /* Điều chỉnh chiều cao */
+    overflow: hidden;
+}
+
+/* Thêm lớp phủ tối */
+.table-restaurant::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Tạo hiệu ứng tối */
+    border-radius: 10px;
+    z-index: 0;
+}
+
+/* Đảm bảo nội dung hiển thị trên lớp phủ */
+.table-restaurant > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Đặt tiêu đề nhà hàng lên trên cùng */
+.table-restaurant-name {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
+/* Căn chỉnh GUEST xuống góc trái dưới */
+.table-guests {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Button tăng/giảm số lượng khách */
+.table-guest-btn {
+    background: #d27d42;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* ========================= */
+/*  🎨 Legend (Chú thích ngày) */
+/* ========================= */
+.table-calendar-legend {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+}
+
+/* Màu sắc cho từng trạng thái ngày */
+.legend-box {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.legend-current {
+    background: red;
+}
+
+.legend-selected {
+    background: #d27d42;
+}
+
+.legend-unavailable {
+    background: darkorange;
+}
+
+/* Calendar */
+.table-calendar {
+    width: 50%;
+    background: #111;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Lịch */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.day {
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Calendar Dates */
+#calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.calendar-date {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: transparent;
+    color: white;
+    text-align: center;
+    margin: 2px;
+}
+
+.calendar-date.today {
+    background: red;
+}
+
+.calendar-date.selected {
+    background: #d27d42;
+}
+
+/* Time Selection */
+.table-time-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.table-time-slots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.time-slot {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: #d27d42;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.time-slot.selected {
+    background: black;
+}
+
+/* Book a Table Button */
+.table-book-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: #d27d42;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* Ẩn tất cả các bước trừ bước đang active */
+.table-step-content {
+    display: none;
+}
+
+.table-step-content.active {
+    display: block;
+}
+
+/* Layout tổng cho phần Step 2 */
+.table-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* ========================= */
+/* 🎨 Bố cục bên trái - Thông tin đặt bàn */
+/* ========================= */
+.table-summary {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: url('../img/banner/pd08.jpg') center/cover no-repeat;
+    height: 465px; /* Chiều cao cố định */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 1);
+    justify-content: flex-end;
+}
+
+/* Overlay cho hiệu ứng mờ */
+.table-summary-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: rgba(0, 0, 0, 0.1); /* Lớp phủ tối */
+    z-index: 1;
+}
+
+.table-summary-title {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.table-summary-info {
+    color: white;
+    padding: 20px;
+    font-size: 16px;
+    z-index: 2;
+}
+
+/* Cấu trúc hàng của thông tin */
+.table-summary-info p {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 0;
+}
+
+/* Các dòng chữ có font đậm */
+.table-summary-info p strong {
+    color: #d27d42;
+}
+/* ========================= */
+/* 🎨 Bố cục bên phải - Form người dùng */
+/* ========================= */
+/* Tổng thể form */
+.table-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: auto;
+}
+
+/* Căn chỉnh các nhóm form */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Nhóm 2 input trên cùng 1 hàng */
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+/* Chia đôi mỗi input */
+.form-row .form-group {
+    flex: 1;
+}
+
+/* Căn chỉnh input */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Điều chỉnh checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Nút Back to Browse */
+.back-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Nút Checkout */
+.table-book-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #d27d42;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.table-form-title {
+    color: #eb5504;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* ========================= */
+/* 🎨 Nút CHECKOUT */
+/* ========================= */
+.table-book-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #d27d42;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    margin-top: 15px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.table-book-btn:hover {
+    background: #a65b30;
+}
+/* Back Button */
+.table-back-btn {
+    padding: 12px 20px;
+    background: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: 0.3s ease;
+}
+
+.table-back-btn:hover {
+    background: #777;
+}
+
+/* Align Back and Checkout Buttons */
+.table-form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* ======== Step 3: Confirm Booking ======== */
+.table-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* ======== Booking Summary (Bên trái) ======== */
+.table-summary {
+    width: 50%;
+    background: url('../img/banner/pd08.jpg') center/cover no-repeat;
+    position: relative;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.table-summary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    z-index: 0;
+}
+
+.table-summary > * {
+    position: relative;
+    z-index: 1;
+}
+
+.table-summary-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.table-summary-info {
+    font-size: 14px;
+}
+
+.table-summary-info p {
+    margin: 5px 0;
+}
+
+/* ======== Payment Section (Bên phải) ======== */
+.table-payment {
+    width: 50%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-payment-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.table-payment-desc {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+/* ======== Bank Details ======== */
+.table-bank-details {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.table-bank-details h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.table-bank-details p {
+    font-size: 14px;
+    margin: 3px 0;
+}
+
+/* ======== Upload Receipt ======== */
+.table-receipt-upload {
+    margin-bottom: 15px;
+}
+
+.table-receipt-upload label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.table-receipt-upload input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* ======== Customer Notes ======== */
+.table-customer-notes {
+    margin-bottom: 15px;
+}
+
+.table-customer-notes label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.table-customer-notes textarea {
+    width: 100%;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    resize: none;
+}
+
+/* ======== Confirm & Back Buttons ======== */
+.table-confirm-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.table-back-btn {
+    background: #555;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+    text-align: center;
+}
+
+.table-confirm-btn {
+    background: #d27d42;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+    text-align: center;
+}
+
+.table-back-btn:hover {
+    background: #444;
+}
+
+.table-confirm-btn:hover {
+    background: #c06b37;
+}
+/*css about*/
+.about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 20px;
+}
+
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.about-intro {
+    flex: 1;
+    text-align: left;
+}
+
+.about-title {
+    padding-left: 20px;
+    color: #111;
+    font-size: 30px;
+    font-weight: lighter;
+    max-width: 400px;
+}
+
+.about-text-columns {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+}
+
+.about-text {
+    padding: 20px;
+    width: 50%;
+    font-size: 20px;
+    color: #6a6a6a;
+    text-align: left;
+}
+
+.about-video {
+    position: relative;
+    width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
+    height: auto; /* Để chiều cao tự động theo nội dung */
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff; /* Màu nền mặc định */
+    transition: background 1s ease-in-out;
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+/* Khi video đang phát, nền sẽ chuyển sang màu đen */
+.about-video.playing {
+    background: black;
+}
+
+.about-video-content {
+    margin: 20px;
+    width: 60%; /* Giới hạn kích thước video */
+    max-width: 800px; /* Giữ video không quá to */
+    border-radius: 20px;
+}
+
+
+.about-video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.about-video-play:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.about-specialists {
+    position: relative;
+    width: 100%;
+}
+
+/* Phần hình nền và nội dung */
+.about-specialists-header {
+    margin-top: 100px;
+    position: relative;
+    height: 400px; /* Điều chỉnh độ cao phần nền */
+    background: url("../img/people/p6.jpg") no-repeat center center/cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about-specialists-content {
+    max-width: 600px;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.about-specialists-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.about-specialists-description {
+    font-size: 1rem;
+    margin: 15px 0;
+}
+
+.about-specialists-button {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.about-specialists-button:hover {
+    background-color: #d35400;
+}
+
+/* Phần danh sách đầu bếp - đè lên phần trên */
+.about-specialists-list {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Khoảng cách ngang giữa các đầu bếp */
+    flex-wrap: wrap; /* Để các phần tử xuống hàng khi màn hình nhỏ */
+    margin-top: -80px; /* Đẩy lên trên để che một phần nền */
+    padding: 60px 20px; /* Tạo khoảng cách giữa trên và dưới */
+    z-index: 2;
+}
+
+.about-chef {
+    text-align: center;
+    background: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 250px; /* Giữ kích thước cố định */
+    margin: 20px 0; /* Tạo khoảng cách trên và dưới */
+}
+
+.about-chef:hover {
+    transform: translateY(-10px); /* Hiệu ứng khi hover */
+}
+
+.about-chef img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+    transform: translateY(-50px); /* Đẩy ảnh lên */
+}
+
+.chef-role {
+    font-weight: bold;
+    color: gray;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.chef-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 10px;
+}
