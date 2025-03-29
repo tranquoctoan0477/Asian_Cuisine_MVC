@@ -75,6 +75,7 @@ public class CartServiceImpl implements CartService {
         orderRepository.save(order);
     }
 
+
     @Override
     public void updateCart(Long userId, CartUpdateRequestDTO request) {
         // 1. Tìm đơn hàng 'pending' của user
@@ -90,6 +91,12 @@ public class CartServiceImpl implements CartService {
             orderItemRepository.delete(item);
         } else {
             item.setQuantity(request.getQuantity());
+
+            // ✅ Cập nhật thêm note nếu có
+            if (request.getNote() != null && !request.getNote().isEmpty()) {
+                item.setNote(request.getNote());
+            }
+
             orderItemRepository.save(item);
         }
 

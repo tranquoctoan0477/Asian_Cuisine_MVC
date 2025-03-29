@@ -25,6 +25,10 @@ public class OrderItem {
 
     private BigDecimal price;
 
+    // ✅ Thêm thuộc tính note
+    @Column(name = "note", length = 255)
+    private String note;
+
     // ===== Getter & Setter =====
     public Long getId() {
         return id;
@@ -60,6 +64,14 @@ public class OrderItem {
 
     public BigDecimal getPrice() {
         return price;
+    }
+    // ✅ Getter và Setter cho note
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public void setPrice(BigDecimal price) {
