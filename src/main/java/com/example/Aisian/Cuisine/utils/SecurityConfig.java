@@ -52,7 +52,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/cart/add").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/cart/update").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/cart/remove/*").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/cart/checkout").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/cart").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/orders/**").authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // 👈 thêm dòng này
                 .httpBasic(httpBasic -> httpBasic.disable());

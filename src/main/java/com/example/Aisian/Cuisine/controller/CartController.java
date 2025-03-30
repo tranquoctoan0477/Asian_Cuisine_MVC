@@ -3,6 +3,7 @@ package com.example.Aisian.Cuisine.controller;
 import com.example.Aisian.Cuisine.dto.CartRequestDTO;
 import com.example.Aisian.Cuisine.dto.CartResponseDTO;
 import com.example.Aisian.Cuisine.dto.CartUpdateRequestDTO;
+import com.example.Aisian.Cuisine.dto.CheckoutRequestDTO;
 import com.example.Aisian.Cuisine.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -90,5 +91,24 @@ public class CartController {
             return ResponseEntity.badRequest().body(errorResponse);
         }
     }
+
+    @PutMapping("/checkout")
+    public ResponseEntity<?> checkout(@RequestBody CheckoutRequestDTO request, Authentication authentication) {
+        try {
+            Long userId = Long.parseLong(authentication.getName());
+
+            cartService.checkout(userId, request); // Gọi hàm xử lý ở service
+
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Đặt hàng thành công!");
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", "Lỗi: " + e.getMessage());
+            return ResponseEntity.badRequest().body(errorResponse);
+        }
+    }
+
 
 }

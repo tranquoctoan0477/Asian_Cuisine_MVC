@@ -3,13 +3,15 @@ package com.example.Aisian.Cuisine.dto;
 public class CartUpdateRequestDTO {
     private Long productId;
     private int quantity;
-    private String note;
+    private String note; // ✅ Đã có biến note
 
     public CartUpdateRequestDTO() {}
 
-    public CartUpdateRequestDTO(Long productId, int quantity) {
+    // 🔥 Thêm constructor đầy đủ
+    public CartUpdateRequestDTO(Long productId, int quantity, String note) {
         this.productId = productId;
         this.quantity = quantity;
+        this.note = note;
     }
 
     public Long getProductId() {

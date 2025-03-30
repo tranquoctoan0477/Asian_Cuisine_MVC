@@ -9,19 +9,29 @@ public class CartItemResponseDTO {
     private BigDecimal price;
     private int quantity;
     private BigDecimal subtotal;
+    private String note;
 
     // Constructors, getters, setters
     public CartItemResponseDTO() {}
 
-    public CartItemResponseDTO(Long productId, String productName, String thumbnail,
-                               BigDecimal price, int quantity, BigDecimal subtotal) {
+    public CartItemResponseDTO(Long productId, String productName, String thumbnail, BigDecimal price, int quantity, BigDecimal subtotal, String note) {
         this.productId = productId;
         this.productName = productName;
         this.thumbnail = thumbnail;
         this.price = price;
         this.quantity = quantity;
         this.subtotal = subtotal;
+        this.note = note; // Khởi tạo note
     }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
 
     public Long getProductId() {
         return productId;

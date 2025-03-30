@@ -1,9 +1,6 @@
 package com.example.Aisian.Cuisine.service;
 
-import com.example.Aisian.Cuisine.dto.CartItemResponseDTO;
-import com.example.Aisian.Cuisine.dto.CartRequestDTO;
-import com.example.Aisian.Cuisine.dto.CartResponseDTO;
-import com.example.Aisian.Cuisine.dto.CartUpdateRequestDTO;
+import com.example.Aisian.Cuisine.dto.*;
 import com.example.Aisian.Cuisine.model.Order;
 import com.example.Aisian.Cuisine.model.OrderItem;
 import com.example.Aisian.Cuisine.model.Product;
@@ -11,10 +8,12 @@ import com.example.Aisian.Cuisine.repository.OrderItemRepository;
 import com.example.Aisian.Cuisine.repository.OrderRepository;
 import com.example.Aisian.Cuisine.repository.ProductRepository;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,33 +77,41 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void updateCart(Long userId, CartUpdateRequestDTO request) {
-        // 1. Tìm đơn hàng 'pending' của user
         Order order = orderRepository.findByUserIdAndStatus(userId, "pending")
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy giỏ hàng"));
 
-        // 2. Tìm item trong giỏ
         OrderItem item = orderItemRepository.findByOrderIdAndProductId(order.getId(), request.getProductId())
                 .orElseThrow(() -> new RuntimeException("Sản phẩm không tồn tại trong giỏ"));
 
-        // 3. Nếu quantity = 0 thì xóa item
         if (request.getQuantity() <= 0) {
             orderItemRepository.delete(item);
         } else {
             item.setQuantity(request.getQuantity());
 
-            // ✅ Cập nhật thêm note nếu có
-            if (request.getNote() != null && !request.getNote().isEmpty()) {
-                item.setNote(request.getNote());
+            // ✅ Xử lý giá trị null của note
+            String receivedNote = request.getNote();
+            if (receivedNote == null) {
+                receivedNote = "";  // Nếu không có ghi chú, đặt giá trị mặc định là chuỗi rỗng
             }
 
+            // ✅ Log kiểm tra xem backend có nhận được note hay không
+            System.out.println("📥 Note nhận được từ API: '" + receivedNote + "'");
+
+            item.setNote(receivedNote);
+            System.out.println("📥 Note đã được gán vào OrderItem: '" + item.getNote() + "'");
+
+            // 🔥 Lưu vào database
             orderItemRepository.save(item);
+            System.out.println("✅ OrderItem đã được lưu thành công!");
         }
 
-        // 4. Cập nhật lại total
+        // ✅ Cập nhật lại tổng giá của đơn hàng
         BigDecimal newTotal = orderItemRepository.calculateTotalByOrderId(order.getId());
         order.setTotal(newTotal != null ? newTotal : BigDecimal.ZERO);
         orderRepository.save(order);
     }
+
+
 
     @Override
     public void removeItem(Long userId, Long productId) {
@@ -127,14 +134,20 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartResponseDTO getCart(Long userId) {
+        // Lấy order có status "pending" cho user
         Order order = orderRepository.findByUserIdAndStatus(userId, "pending")
                 .orElseThrow(() -> new RuntimeException("Giỏ hàng trống"));
 
+        // Lấy tất cả các OrderItem từ order
         List<OrderItem> items = orderItemRepository.findByOrderId(order.getId());
 
+        // Chuyển các OrderItem thành CartItemResponseDTO
         List<CartItemResponseDTO> itemDTOs = items.stream().map(item -> {
             Product product = item.getProduct();
             BigDecimal subtotal = product.getPrice().multiply(BigDecimal.valueOf(item.getQuantity()));
+
+            // ✅ Thay đổi: Nếu item.getNote() là null, thì trả về chuỗi rỗng ""
+            String note = item.getNote() != null ? item.getNote() : "";
 
             return new CartItemResponseDTO(
                     product.getId(),
@@ -142,11 +155,52 @@ public class CartServiceImpl implements CartService {
                     product.getMainImg(),
                     product.getPrice(),
                     item.getQuantity(),
-                    subtotal
+                    subtotal,
+                    note // ✅ Gửi note không bao giờ là null
             );
         }).toList();
 
+        // Trả về danh sách các món trong giỏ hàng và tổng giá
         return new CartResponseDTO(itemDTOs, order.getTotal());
     }
+
+    @Override
+    @Transactional
+    public void checkout(Long userId, CheckoutRequestDTO request) {
+        // 1. Tìm đơn hàng đang chờ (pending)
+        Order order = orderRepository.findByUserIdAndStatus(userId, "pending")
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy giỏ hàng đang chờ thanh toán."));
+
+        // 2. Cập nhật thông tin đơn hàng từ request
+        order.setAddress(request.getAddress());
+        order.setAddressNote(request.getAddressNote());
+        order.setPhoneNumber(request.getPhoneNumber());
+        order.setVoucherCode(request.getVoucherCode());
+
+        // 3. Lấy tất cả OrderItem thuộc về Order này
+        List<OrderItem> orderItems = orderItemRepository.findByOrderId(order.getId());
+
+        // 4. Cập nhật note cho từng món trong Order
+        for (OrderItem orderItem : orderItems) {
+            // Tìm `note` tương ứng từ request
+            for (CheckoutItemDTO itemDTO : request.getItems()) {
+                if (orderItem.getProduct().getId().equals(itemDTO.getProductId())) {
+                    orderItem.setNote(itemDTO.getNote()); // ✅ Cập nhật note
+                    orderItemRepository.save(orderItem); // ✅ Lưu thay đổi vào database
+                    System.out.println("✅ Đã lưu note cho sản phẩm: " + orderItem.getProduct().getName() + " - Note: " + orderItem.getNote());
+                    break;
+                }
+            }
+        }
+
+        // 5. Cập nhật trạng thái và thời gian đặt
+        order.setStatus("paid");
+        order.setCreatedAt(new Timestamp(System.currentTimeMillis())); // cập nhật thời gian thanh toán
+
+        // 6. Lưu lại đơn hàng
+        orderRepository.save(order);
+    }
+
+
 
 }
